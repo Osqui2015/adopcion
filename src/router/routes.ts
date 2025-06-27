@@ -4,11 +4,15 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/HomePage.vue') },
+      { path: 'adoptar/:id', component: () => import('pages/AdopcionForm.vue') },
+      { path: 'cargar-animal', component: () => import('pages/CargarAnimal.vue') },
+      { path: 'about', component: () => import('pages/AboutPage.vue') },
+    ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  // Siempre dejar esta al final
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
