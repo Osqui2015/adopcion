@@ -1,40 +1,46 @@
-# Quasar App (adopcion)
+# 🐾 Proyecto Adopción - Vue 3 + TypeScript + Quasar
 
-A Quasar Project
+Este proyecto busca crear una aplicación web para facilitar la adopción de animales, con una experiencia estilo “Tinder” para deslizar entre fotos de mascotas disponibles, y un formulario de adopción.
 
-## Install the dependencies
+## 🚀 Tecnologías
+
+- [Vue 3](https://vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Quasar Framework](https://quasar.dev/) con Vite
+- Pinia (opcional, para gestión de estado)
+- Axios (opcional, para llamadas a APIs)
+
+## 📦 Instalación
+
+1. Clonar el repositorio:
+
 ```bash
-yarn
-# or
+git clone https://github.com/Osqui2015/adopcion.git
+cd adopcion
+Instalar dependencias:
+
+bash
+Copiar
+Editar
 npm install
-```
+Levantar el servidor de desarrollo:
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
+bash
+Copiar
+Editar
 quasar dev
-```
+📝 Funcionalidades esperadas
+✅ Listado de animales en adopción
+✅ Interfaz estilo swipe (Tinder-like)
+✅ Formulario para adopción y contacto
+✅ Panel de carga para protectoras/refugios
+✅ Administración de animales disponibles
 
+(en desarrollo)
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+🤝 Contribuciones
+¡Se aceptan PRs y sugerencias!
+Podés abrir issues o propuestas de mejora.
 
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+Autor: Osqui2015
+Licencia: MIT
