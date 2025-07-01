@@ -9,6 +9,10 @@ const routes: RouteRecordRaw[] = [
       { path: 'adoptar/:id', component: () => import('pages/AdopcionForm.vue') },
       { path: 'cargar-animal', component: () => import('pages/CargarAnimal.vue') },
       { path: 'about', component: () => import('pages/AboutPage.vue') },
+      {
+        path: 'veterinarias',
+        component: () => import('pages/Veterinarias.vue'),
+      },
     ],
   },
 
