@@ -21,14 +21,13 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  // 🚀 Guard de autenticación admin
+  // 🚀 Global Guard para proteger rutas de admin
   router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth) {
-      const isAuth = localStorage.getItem('admin_auth') === 'yes';
-      if (!isAuth) {
-        next('/admin-login');
-        return;
-      }
+    const isAuth = localStorage.getItem('admin_auth') === 'yes';
+
+    if (to.meta.requiresAuth && !isAuth) {
+      next('/admin-login');
+      return;
     }
     next();
   });

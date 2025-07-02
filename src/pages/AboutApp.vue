@@ -4,8 +4,7 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  name: "AboutApp"
-}
+<script setup lang="ts">
+
+
 </script>

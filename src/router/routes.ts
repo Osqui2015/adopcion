@@ -7,11 +7,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/HomePage.vue') },
       { path: 'cargar-animal', component: () => import('pages/CargarAnimal.vue') },
-      {
-        path: "about",
-        component: () => import("pages/AboutApp.vue")
-      },
-
+      { path: 'about', component: () => import('pages/AboutApp.vue') },
       { path: 'veterinarias', component: () => import('pages/Veterinarias.vue') },
       { path: 'quiero-adoptar', component: () => import('pages/QuieroAdoptar.vue') },
       {
@@ -19,11 +15,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/AdminPanel.vue'),
         meta: { requiresAuth: true },
       },
+      {
+        path: 'admin-login',
+        component: () => import('pages/AdminLogin.vue'),
+      },
     ],
-  },
-  {
-    path: '/admin-login',
-    component: () => import('pages/AdminLogin.vue'),
   },
   {
     path: '/:catchAll(.*)*',

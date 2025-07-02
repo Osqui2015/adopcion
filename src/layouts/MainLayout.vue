@@ -31,8 +31,7 @@
             flat
             dense
             label="Admin"
-            @click="goTo('/admin')"
-            v-if="userIsAdmin"
+            @click="goToAdmin"
           />
           <q-btn
             flat
@@ -93,8 +92,7 @@
         <q-item
           clickable
           v-ripple
-          @click="goTo('/admin')"
-          v-if="userIsAdmin"
+          @click="goToAdmin"
         >
           <q-item-section avatar>
             <q-icon name="admin_panel_settings" />
@@ -135,8 +133,8 @@ const $q = useQuasar()
 const isMobile = computed(() => $q.screen.lt.md)
 
 // flags de autenticación simulados
-const isLoggedIn = ref(true)  // cambiar a false según lógica real
-const userIsAdmin = ref(true) // cambiar a false según lógica real
+const isLoggedIn = ref(true)  // ajustar según tu auth real
+const userIsAdmin = ref(false) // ajustar según tu auth real
 
 function toggleDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -147,10 +145,19 @@ function goTo(path: string) {
   leftDrawerOpen.value = false
 }
 
+function goToAdmin() {
+  if (isLoggedIn.value && userIsAdmin.value) {
+    void router.push('/admin')
+  } else {
+    void router.push('/admin-login')
+  }
+}
+
 function logout() {
-  // aca deberías limpiar tu store / token / cookies
+  // ejemplo: limpiar token o store
   console.log("Cerrando sesión...")
   isLoggedIn.value = false
+  userIsAdmin.value = false
   void router.push('/')
 }
 </script>
