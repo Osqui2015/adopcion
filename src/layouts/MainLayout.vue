@@ -26,7 +26,21 @@
           <q-btn flat dense label="Cargar Animal" @click="goTo('/cargar-animal')" />
           <q-btn flat dense label="Acerca de" @click="goTo('/about')" />
           <q-btn flat dense label="Veterinarias" @click="goTo('/veterinarias')" />
-
+          <q-btn flat dense label="Quiero Adoptar" @click="goTo('/quiero-adoptar')" />
+          <q-btn
+            flat
+            dense
+            label="Admin"
+            @click="goTo('/admin')"
+            v-if="userIsAdmin"
+          />
+          <q-btn
+            flat
+            dense
+            icon="logout"
+            @click="logout"
+            v-if="isLoggedIn"
+          />
         </div>
       </q-toolbar>
     </q-header>
@@ -66,6 +80,39 @@
           </q-item-section>
           <q-item-section>Veterinarias</q-item-section>
         </q-item>
+
+        <q-item clickable v-ripple @click="goTo('/quiero-adoptar')">
+          <q-item-section avatar>
+            <q-icon name="favorite" />
+          </q-item-section>
+          <q-item-section>Quiero Adoptar</q-item-section>
+        </q-item>
+
+        <q-separator spaced />
+
+        <q-item
+          clickable
+          v-ripple
+          @click="goTo('/admin')"
+          v-if="userIsAdmin"
+        >
+          <q-item-section avatar>
+            <q-icon name="admin_panel_settings" />
+          </q-item-section>
+          <q-item-section>Admin</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          @click="logout"
+          v-if="isLoggedIn"
+        >
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+          <q-item-section>Salir</q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -87,6 +134,10 @@ const $q = useQuasar()
 // breakpoint responsivo
 const isMobile = computed(() => $q.screen.lt.md)
 
+// flags de autenticación simulados
+const isLoggedIn = ref(true)  // cambiar a false según lógica real
+const userIsAdmin = ref(true) // cambiar a false según lógica real
+
 function toggleDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
@@ -94,5 +145,12 @@ function toggleDrawer() {
 function goTo(path: string) {
   void router.push(path)
   leftDrawerOpen.value = false
+}
+
+function logout() {
+  // aca deberías limpiar tu store / token / cookies
+  console.log("Cerrando sesión...")
+  isLoggedIn.value = false
+  void router.push('/')
 }
 </script>
