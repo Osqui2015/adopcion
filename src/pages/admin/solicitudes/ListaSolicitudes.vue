@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import axios from "axios";
 
@@ -75,6 +75,8 @@ const enviarFormulario = async () => {
   error.value = "";
   try {
     const response = await axios.post("/api/veterinarias", veterinaria.value);
+    console.log(response.data);
+
     mensaje.value = "Veterinaria cargada con éxito.";
     veterinaria.value = { nombre: "", direccion: "", telefono: "", horario: "" };
   } catch (e) {

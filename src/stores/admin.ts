@@ -1,6 +1,13 @@
+// src/stores/admin.ts
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
+
+interface LoginResponse {
+  success: boolean;
+  token: string;
+  mensaje: string;
+}
 
 export const useAdminStore = defineStore('admin', () => {
   const isAuth = ref(false);
@@ -11,7 +18,10 @@ export const useAdminStore = defineStore('admin', () => {
     loading.value = true;
     error.value = null;
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, credentials);
+      const response = await axios.post<LoginResponse>(
+        `${import.meta.env.VITE_API_URL}/login`,
+        credentials,
+      );
 
       if (response.data.success) {
         localStorage.setItem('admin_auth', 'yes');
@@ -21,7 +31,7 @@ export const useAdminStore = defineStore('admin', () => {
         isAuth.value = false;
       }
     } catch {
-      error.value = 'Error de conexión con el servidor';
+      error.value = 'Error al intentar iniciar sesión';
       isAuth.value = false;
     } finally {
       loading.value = false;

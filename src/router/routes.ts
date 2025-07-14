@@ -6,10 +6,13 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('src/pages/general/HomePage.vue') },
-      { path: 'cargar-animal', component: () => import('src/pages/admin/animal/CargarAnimal.vue') },
+
+      // Página pública
       { path: 'about', component: () => import('src/pages/general/AboutApp.vue') },
-      { path: 'veterinarias', component: () => import('pages/Veterinarias.vue') },
       { path: 'quiero-adoptar', component: () => import('src/pages/adopcion/QuieroAdoptar.vue') },
+      { path: 'veterinarias', component: () => import('src/pages/adopcion/Veterinarias.vue') },
+
+      // Admin
       {
         path: 'admin',
         component: () => import('src/pages/admin/AdminPanel.vue'),
@@ -19,11 +22,28 @@ const routes: RouteRecordRaw[] = [
         path: 'admin-login',
         component: () => import('src/pages/admin/AdminLogin.vue'),
       },
+      {
+        path: 'admin/cargar-animal',
+        component: () => import('src/pages/admin/animal/CargarAnimal.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'admin/cargar-veterinaria',
+        component: () => import('src/pages/admin/veterinaria/CargarVeterinaria.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'admin/solicitudes',
+        component: () => import('src/pages/admin/solicitudes/ListaSolicitudes.vue'),
+        meta: { requiresAuth: true },
+      },
     ],
   },
+
+  // Página 404
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('src/pages/ErrorNotFound.vue'),
   },
 ];
 
