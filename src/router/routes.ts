@@ -5,36 +5,42 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('src/pages/general/HomePage.vue') },
+      // Páginas públicas
+      { path: '', component: () => import('pages/general/HomePage.vue') },
+      { path: 'about', component: () => import('pages/general/AboutApp.vue') },
+      { path: 'quiero-adoptar', component: () => import('pages/adopcion/QuieroAdoptar.vue') },
+      { path: 'veterinarias', component: () => import('pages/adopcion/Veterinarias.vue') },
 
-      // Página pública
-      { path: 'about', component: () => import('src/pages/general/AboutApp.vue') },
-      { path: 'quiero-adoptar', component: () => import('src/pages/adopcion/QuieroAdoptar.vue') },
-      { path: 'veterinarias', component: () => import('src/pages/adopcion/Veterinarias.vue') },
+      // ⚠️ NUEVA RUTA PARA EL FORMULARIO DE ADOPCIÓN INDIVIDUAL
+      {
+        path: 'adopcion-form/:id',
+        name: 'AdopcionForm',
+        component: () => import('pages/adopcion/AdopcionForm.vue'),
+      },
 
       // Admin
       {
         path: 'admin',
-        component: () => import('src/pages/admin/AdminPanel.vue'),
+        component: () => import('pages/admin/AdminPanel.vue'),
         meta: { requiresAuth: true },
       },
       {
         path: 'admin-login',
-        component: () => import('src/pages/admin/AdminLogin.vue'),
+        component: () => import('pages/admin/AdminLogin.vue'),
       },
       {
         path: 'admin/cargar-animal',
-        component: () => import('src/pages/admin/animal/CargarAnimal.vue'),
+        component: () => import('pages/admin/animal/CargarAnimal.vue'),
         meta: { requiresAuth: true },
       },
       {
         path: 'admin/cargar-veterinaria',
-        component: () => import('src/pages/admin/veterinaria/CargarVeterinaria.vue'),
+        component: () => import('pages/admin/veterinaria/CargarVeterinaria.vue'),
         meta: { requiresAuth: true },
       },
       {
         path: 'admin/solicitudes',
-        component: () => import('src/pages/admin/solicitudes/ListaSolicitudes.vue'),
+        component: () => import('pages/admin/solicitudes/ListaSolicitudes.vue'),
         meta: { requiresAuth: true },
       },
     ],
@@ -43,7 +49,7 @@ const routes: RouteRecordRaw[] = [
   // Página 404
   {
     path: '/:catchAll(.*)*',
-    component: () => import('src/pages/ErrorNotFound.vue'),
+    component: () => import('pages/ErrorNotFound.vue'),
   },
 ];
 

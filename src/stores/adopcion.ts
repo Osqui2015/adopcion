@@ -5,7 +5,6 @@ import axios from 'axios';
 
 interface SolicitudAdopcion {
   nombre: string;
-  apellido: string;
   telefono: string;
   email: string;
   direccion: string;

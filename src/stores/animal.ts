@@ -1,54 +1,34 @@
 // src/stores/animal.ts
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import axios from 'axios';
+import type { Animal } from 'src/types/Animal';
+import * as animalService from 'src/services/animalService';
 
-interface Animal {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  foto: string;
-  estado: string;
-}
+export const useAnimalStore = defineStore('animal', {
+  state: () => ({
+    animales: [] as Animal[],
+    cargando: false,
+  }),
 
-export const useAnimalStore = defineStore('animal', () => {
-  const animals = ref<Animal[]>([]);
-  const loading = ref(false);
-  const error = ref<string | null>(null);
+  actions: {
+    async cargarAnimales() {
+      this.cargando = true;
+      try {
+        this.animales = await animalService.getAnimales();
+      } catch (error) {
+        console.error('Error cargando animales', error);
+      } finally {
+        this.cargando = false;
+      }
+    },
 
-  async function fetchAnimals() {
-    loading.value = true;
-    error.value = null;
-    try {
-      const res = await axios.get<Animal[]>(`${import.meta.env.VITE_API_URL}/animals`);
-      animals.value = res.data;
-    } catch (err) {
-      console.error('Error al obtener animales', err);
-      error.value = 'No se pudieron cargar los animales';
-    } finally {
-      loading.value = false;
-    }
-  }
+    async agregarAnimal(nuevo: Animal) {
+      const creado = await animalService.crearAnimal(nuevo);
+      this.animales.push(creado);
+    },
 
-  async function addAnimal(animal: Omit<Animal, 'id' | 'estado'>) {
-    loading.value = true;
-    error.value = null;
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/animals`, animal);
-      await fetchAnimals(); // recarga la lista
-    } catch (err) {
-      console.error('Error al agregar animal', err);
-      error.value = 'Error al agregar el animal';
-    } finally {
-      loading.value = false;
-    }
-  }
-
-  return {
-    animals,
-    loading,
-    error,
-    fetchAnimals,
-    addAnimal,
-  };
+    async eliminarAnimal(id: string) {
+      await animalService.eliminarAnimal(id);
+      this.animales = this.animales.filter((a) => a.id !== id);
+    },
+  },
 });
