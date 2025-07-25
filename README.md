@@ -1,6 +1,6 @@
 # 🐾 Proyecto Adopción - Vue 3 + TypeScript + Quasar
 
-Este proyecto busca crear una aplicación web para facilitar la adopción de animales, con una experiencia estilo “Tinder” para deslizar entre fotos de mascotas disponibles, y un formulario de adopción.
+Este proyecto busca crear una aplicación web para facilitar la adopción de animales, con una experiencia estilo "Tinder" para deslizar entre fotos de mascotas disponibles y un formulario de adopción.
 
 ## 🚀 Tecnologías
 
@@ -17,30 +17,35 @@ Este proyecto busca crear una aplicación web para facilitar la adopción de ani
 ```bash
 git clone https://github.com/Osqui2015/adopcion.git
 cd adopcion
-Instalar dependencias:
+```
 
-bash
-Copiar
-Editar
+2. Instalar dependencias:
+
+```bash
 npm install
-Levantar el servidor de desarrollo:
+```
 
-bash
-Copiar
-Editar
+3. Levantar el servidor de desarrollo:
+
+```bash
 quasar dev
-📝 Funcionalidades esperadas
-✅ Listado de animales en adopción
-✅ Interfaz estilo swipe (Tinder-like)
-✅ Formulario para adopción y contacto
-✅ Panel de carga para protectoras/refugios
-✅ Administración de animales disponibles
+```
+
+## 📝 Funcionalidades esperadas
+
+- ✅ Listado de animales en adopción
+- ✅ Interfaz estilo swipe (Tinder-like)
+- ✅ Formulario para adopción y contacto
+- ✅ Panel de carga para protectoras/refugios
+- ✅ Administración de animales disponibles
 
 (en desarrollo)
 
-🤝 Contribuciones
+## 🤝 Contribuciones
+
 ¡Se aceptan PRs y sugerencias!
 Podés abrir issues o propuestas de mejora.
 
 Autor: Osqui2015
+
 Licencia: MIT
